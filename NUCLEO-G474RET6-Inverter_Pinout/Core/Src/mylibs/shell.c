@@ -22,6 +22,8 @@ uint8_t brian[]="Brian is in the kitchen\r\n";
 uint8_t uartRxReceived;
 uint8_t uartRxBuffer[UART_RX_BUFFER_SIZE];
 uint8_t uartTxBuffer[UART_TX_BUFFER_SIZE];
+uint8_t alpha_speed; //compris en 0 et 100
+
 
 char	 	cmdBuffer[CMD_BUFFER_SIZE];
 int 		idx_cmd;
@@ -76,11 +78,37 @@ void Shell_Loop(void){
 			int uartTxStringLength = snprintf((char *)uartTxBuffer, UART_TX_BUFFER_SIZE, "Print all available functions here\r\n");
 			HAL_UART_Transmit(&huart2, uartTxBuffer, uartTxStringLength, HAL_MAX_DELAY);
 		}
+
+		else if(strcmp(argv[0],"speed")==0){
+			alpha_speed=atoi(argv[1]);
+
+			if (alpha_speed<=100)
+			{
+
+			TIM1->CCR1=(alpha_speed*(TIM1->ARR))/100; //CCR1 car channel 1
+			TIM1->CCR2=((100-alpha_speed)*(TIM1->ARR))/100; //100-alpha car complémentaire
+			}
+		}
+
+		else if(strcmp(argv[0],"start")==0){
+			TIM1->CCR1=(50*(TIM1->ARR))/100; //on fixe le rapport cyclique à 50%
+
+			HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_1);
+			HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_1);
+			HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_2);
+			HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_2);
+		}
+
+		else if(strcmp(argv[0],"stop")==0){
+			 HAL_TIM_PWM_Stop (&htim1, TIM_CHANNEL_1);
+				}
+
 		else{
 			HAL_UART_Transmit(&huart2, cmdNotFound, sizeof(cmdNotFound), HAL_MAX_DELAY);
 		}
 		HAL_UART_Transmit(&huart2, prompt, sizeof(prompt), HAL_MAX_DELAY);
 		newCmdReady = 0;
+
 	}
 }
 
