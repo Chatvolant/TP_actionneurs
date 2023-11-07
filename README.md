@@ -15,7 +15,7 @@ Objectifs :
 
 Fréquence PWM = 20kHz : compromis entre vitesse commutation des transistors et ondulations de courant : plus commutation rapide, moins on a d’ondulations de courant mais on augmente les pertes par commutation au niveau des transistors. On se place à 20kHz aussi parce que c’est dans l’inaudible.
 
-##6.1. Génération de 4 PWM
+## 6.1. Génération de 4 PWM
 
 Générer quatre PWM sur les bras de pont U et V pour controler le hacheur à partir du timer déjà attribué sur ces pins.
 
