@@ -15,7 +15,7 @@ Objectifs :
 
 Fréquence PWM = 20kHz : compromis entre vitesse commutation des transistors et ondulations de courant : plus commutation rapide, moins on a d’ondulations de courant mais on augmente les pertes par commutation au niveau des transistors. On se place à 20kHz aussi parce que c’est dans l’inaudible.
 
-##6.1. Génération de 4 PWM
+## 6.1. Génération de 4 PWM
 
 Générer quatre PWM sur les bras de pont U et V pour controler le hacheur à partir du timer déjà attribué sur ces pins.
 
@@ -31,7 +31,7 @@ Pour les tests, fixer le rapport cyclique à 60%.
 Une fois les PWM générées, les afficher sur un oscilloscope et les faire vérifier par votre professeur.
 
 MOSFET : irf540n 
-![image](https://github.com/Chatvolant/TP_actionneurs/assets/143954035/44a8f106-10d1-4d9b-a6ec-42af40752080)
+![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/mosfet_source_drain_characteristics.png)
 
 Trr : Temps de commutation diode interne
 Timer 1 : bus APB2
