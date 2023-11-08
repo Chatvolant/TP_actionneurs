@@ -101,7 +101,7 @@ On les ajoute au shell.c, où on a codé la commande speed
 				}
 ```
 
-On a rencontré quelques problèmes  avec la carte :les transistors ne fonctionnnaient pas correctement et du coup on avait un moteur qui s'emballait.
+On a rencontré quelques problèmes  avec la carte : les transistors ne fonctionnnaient pas correctement et du coup on avait un moteur qui s'emballait.
 
 
 
