@@ -42,7 +42,7 @@ Donc on divise ARR/2 (On avait mis ARR à 8499 comme on pensait au début qu'on 
 
 ![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/pwm.png)
 
-Il ne faut pas oublier de démarrer les PWM. Cela se fait par le biais de fonctions HAL
+Il ne faut pas oublier de démarrer la génération des PWM. Cela se fait par le biais de fonctions HAL
 
 ```c
 HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_1);
@@ -101,7 +101,7 @@ On les ajoute au shell.c, où on a codé la commande speed
 				}
 ```
 
-
+On a rencontré quelques problèmes  avec la carte :les transistors ne fonctionnnaient pas correctement et du coup on avait un moteur qui s'emballait.
 
 
 
