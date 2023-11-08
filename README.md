@@ -42,6 +42,15 @@ Donc on divise ARR/2 (On avait mis ARR à 8499 comme on pensait au début qu'on 
 
 ![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/pwm.png)
 
+Il ne faut pas oublier de démarrer les PWM. Cela se fait par le biais de fonctions HAL
+
+```c
+HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_1);
+	HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_2);
+	HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_2);
+```
+
 Prochain objectif : Programmer le rapport cyclique avec l'UART en boucle ouverte (via le shell)
 
 ## 2. Commande de vitesse
