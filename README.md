@@ -55,8 +55,8 @@ On obtient les signaux suivants
 
 On remarque que les signaux ne sont pas décalés entre eux, c'est parce qu'on a oublié de prendre en compte la complémentarité des deux autres signaux. Donc on met ça _100-alpha_speed_ au lieu de _alpha_speed_ pour CCR2
 
-![alt text]([https://github.com/Chatvolant/TP_actionneurs/blob/main/code_speed_v1.png](https://github.com/Chatvolant/TP_actionneurs/blob/main/code_speed_v2.png)  
-La dernière peut aussi s'écrire de la façon suivante : 
+![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/code_speed_v2.png)  
+La dernière ligne du code peut aussi s'écrire de la façon suivante : 
 
 ```c
 TIM1->CCR2=(TIM1->ARR)-(TIM1->CCR1);
