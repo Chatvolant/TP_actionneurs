@@ -69,8 +69,10 @@ Ajout de commandes au projet :
 On les ajoute au shell.c, où on a codé la commande speed  
 
 ```c
-else if(strcmp(argv[0],"start")==0){
+
+		else if(strcmp(argv[0],"start")==0){
 			TIM1->CCR1=(50*(TIM1->ARR))/100; //on fixe le rapport cyclique à 50%
+			TIM1->CCR2=(50*(TIM1->ARR))/100; //on fixe le rapport cyclique à 50%
 
 			HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_1);
 			HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_1);
