@@ -64,7 +64,26 @@ Ajout de commandes au projet :
 
 - Commande start : permet de fixer le rapport cyclique à 50% (vitesse nulle) et d'activer la génération des pwm (HAL_TIM_PWM_Start et HAL_TIMEx_PWMN_Start),
 - Commande stop : permet de désactiver la génération des PWM.
-- Commande speed XXXX : permet de définir le rapport cyclique à XXXX/PWM_MAX (montée progressive à cette vitesse afin de réduire l'appel à courant) 
+- Commande speed XXXX : permet de définir le rapport cyclique à XXXX/PWM_MAX (montée progressive à cette vitesse afin de réduire l'appel à courant)
+
+On les ajoute au shell.c, où on a codé la commande speed  
+
+```c
+else if(strcmp(argv[0],"start")==0){
+			TIM1->CCR1=(50*(TIM1->ARR))/100; //on fixe le rapport cyclique à 50%
+
+			HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_1);
+			HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_1);
+			HAL_TIM_PWM_Start (&htim1, TIM_CHANNEL_2);
+			HAL_TIMEx_PWMN_Start (&htim1, TIM_CHANNEL_2);
+		}
+
+		else if(strcmp(argv[0],"stop")==0){
+			 HAL_TIM_PWM_Stop (&htim1, TIM_CHANNEL_1);
+				}
+```
+
+
 
 
 
