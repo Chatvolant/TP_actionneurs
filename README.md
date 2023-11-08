@@ -15,7 +15,7 @@ Objectifs :
 
 Fréquence PWM = 20kHz : compromis entre vitesse commutation des transistors et ondulations de courant : plus commutation rapide, moins on a d’ondulations de courant mais on augmente les pertes par commutation au niveau des transistors. On se place à 20kHz aussi parce que c’est dans l’inaudible.
 
-## 6.1. Génération de 4 PWM
+## 1. Génération de 4 PWM
 
 Générer quatre PWM sur les bras de pont U et V pour controler le hacheur à partir du timer déjà attribué sur ces pins.
 
@@ -27,18 +27,44 @@ Cahier des charges :
 
 •	Résolution minimum : 10bits.
 
-Pour les tests, fixer le rapport cyclique à 60%.
-Une fois les PWM générées, les afficher sur un oscilloscope et les faire vérifier par votre professeur.
+Pour les tests, on a fixé le rapport cyclique à 60% (demandé dans l'énoncé du TP).
+On a ensuite fait afficher les PWM sur un oscillo et on les a faites vérifiées par le prof.
 
 MOSFET : irf540n 
 ![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/mosfet_source_drain_characteristics.png)
 
-Trr : Temps de commutation diode interne
+Trr : Temps de commutation diode interne  
 Timer 1 : bus APB2
-Temps mort 200ns
+Temps mort : 200ns (on s'est basé sur la valeur du Trr pour fixer le tps mort à 200 ns)
 
 PWM en mode up de base mais nous on veut mode up down (comptage, décomptage)
-Donc on divise ARR/2 (ARR était à 8499)
+Donc on divise ARR/2 (On avait mis ARR à 8499 comme on pensait au début qu'on était seulement en mode up pour le comptage)
+
+![alt text]PWM
+
+Prochain objectif : Programmer le rapport cyclique avec l'UART en boucle ouverte (via le shell)
+
+## 2. Commande de vitesse
+
+dans le fichier shell.c on code le changement du rapport cyclique (le code s'éxécute seulement si on écrit speed XX avec XX la valeur entre 0 et 100 pour le rapport cyclique)
+
+![alt text] code
+
+On obtient les signaux suivants  
+
+
+On remarque que les signaux ne sont pas décalés entre eux, c'est parce qu'on a oublié de prendre en compte la complémentarité des deux autres signaux. Donc on met ça _100-alpha_speed_ au lieu de _alpha_speed_ pour CCR2
+
+![alt text]code corrigé
+
+# Séance 2 - Commande en boucle ouverte, mesure de vitesse et de courant
+
+## 1. Commande de la vitesse
+Ajout de commandes au projet :  
+
+- Commande start : permet de fixer le rapport cyclique à 50% (vitesse nulle) et d'activer la génération des pwm (HAL_TIM_PWM_Start et HAL_TIMEx_PWMN_Start),
+- Commande stop : permet de désactiver la génération des PWM.
+- Commande speed XXXX : permet de définir le rapport cyclique à XXXX/PWM_MAX (montée progressive à cette vitesse afin de réduire l'appel à courant) 
 
 
 
