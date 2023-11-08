@@ -40,7 +40,7 @@ Temps mort : 200ns (on s'est basé sur la valeur du Trr pour fixer le tps mort �
 PWM en mode up de base mais nous on veut mode up down (comptage, décomptage)
 Donc on divise ARR/2 (On avait mis ARR à 8499 comme on pensait au début qu'on était seulement en mode up pour le comptage)
 
-![alt text]PWM
+![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/pwm.png)
 
 Prochain objectif : Programmer le rapport cyclique avec l'UART en boucle ouverte (via le shell)
 
@@ -48,14 +48,14 @@ Prochain objectif : Programmer le rapport cyclique avec l'UART en boucle ouverte
 
 dans le fichier shell.c on code le changement du rapport cyclique (le code s'éxécute seulement si on écrit speed XX avec XX la valeur entre 0 et 100 pour le rapport cyclique)
 
-![alt text] code
+![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/code_speed_v1.png)
 
 On obtient les signaux suivants  
 
 
 On remarque que les signaux ne sont pas décalés entre eux, c'est parce qu'on a oublié de prendre en compte la complémentarité des deux autres signaux. Donc on met ça _100-alpha_speed_ au lieu de _alpha_speed_ pour CCR2
 
-![alt text]code corrigé
+![alt text](https://github.com/Chatvolant/TP_actionneurs/blob/main/code_speed_v1.png)
 
 # Séance 2 - Commande en boucle ouverte, mesure de vitesse et de courant
 
